@@ -1,30 +1,21 @@
-title: npawar-title
-subtitle: ...and sub-title
+title: Pawar to you
+subtitle: ...and me
 author: Nawinder Pawar
-avatar_url: /assets/img/unknown-avatar.png  # Should be 160x160px.
+avatar_url: /assets/img/npawar.png  # Should be 160x160px.
 description: > # this means to ignore newlines until "twitter_username:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Some thoughts on software and scalability.
 repository: nawinderpawar/blog
 
 # contact
 contact:
-  email: nawinder@domain.com  # Comment out this line if you don't want to expose your email.
+  email: nawinder@pawar.me  # Comment out this line if you don't want to expose your email.
 #  url: https://your-contact-url # Uncomment this to provide a contact form url instead of an email
 
 # social links
-twitter_username: jekyllrb
-github_username:  jekyll
+twitter_username: NawinderPawar
+github_username:  nawinderpawar
 rss: rss
-#dribbble_username: jekyll
-#facebook_username: jekyll
-#flickr_username: jekyll
-#instagram_username: jekyll
 #linkedin_username: jekyll
-#pinterest_username: jekyll
-#youtube_username: jekyll
-#googleplus_username: +jekyll
 
 # 
 # Subscribe Feed
