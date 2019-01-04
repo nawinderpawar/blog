@@ -1,7 +1,7 @@
 title: Power to you
 subtitle: ...and me
 author: Nawinder Pawar
-avatar_url: /assets/img/npawar.png  # Should be 160x160px.
+avatar_url: /assets/img/npawar1.png  # Should be 160x160px.
 description: > # this means to ignore newlines until "twitter_username:"
   Some thoughts on software and scalability.
 repository: nawinderpawar/blog
