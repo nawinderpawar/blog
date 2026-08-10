@@ -20,8 +20,10 @@ title = 'Power to you'
   unsafe = true
 
 [markup.highlight]
+  # Classes, not inline styles; the stylesheet is static/css/syntax.css,
+  # regenerate with: hugo gen chromastyles --style=github-dark
   noClasses = false
-  style = 'algol_nu'
+  style = 'github-dark'
 
 [taxonomies]
   tag = 'tags'

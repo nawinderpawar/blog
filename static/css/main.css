@@ -1,26 +1,17 @@
 /* Power to you — minimal single-column blog. */
 
+/* Dark palette. Every text pair is verified against WCAG 2.1 AA (4.5:1);
+   most clear AAA (7:1). Lowest ratio in use is 6.49:1. */
 :root {
-  --bg: #fdfdfb;
-  --fg: #1a1a1a;
-  --muted: #6b6b6b;
-  --rule: #e0ddd6;
-  --link: #14539a;
-  --link-hover: #a02020;
-  --code-bg: #f2f1ec;
+  color-scheme: dark;
+  --bg: #15171b;
+  --fg: #e8e6e1;
+  --muted: #a8a49c;
+  --rule: #2e3238;
+  --link: #8fb8f0;
+  --link-hover: #f2a6a6;
+  --code-bg: #1e2127;
   --measure: 36rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #16171a;
-    --fg: #e4e2dd;
-    --muted: #9a9892;
-    --rule: #33353a;
-    --link: #7cb0e8;
-    --link-hover: #e88b8b;
-    --code-bg: #212328;
-  }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -125,6 +116,11 @@ pre {
   line-height: 1.5;
 }
 pre code { padding: 0; background: none; font-size: inherit; }
+
+/* Keep Chroma's highlighting colours but use our own code background. */
+.chroma { background: var(--code-bg); }
+.post-body .highlight { margin: 0 0 1.15rem; }
+.post-body .highlight pre { margin: 0; }
 
 /* Tables */
 .post-body table { width: 100%; margin: 0 0 1.15rem; border-collapse: collapse; font-size: 0.9375rem; }

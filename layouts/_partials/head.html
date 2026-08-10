@@ -24,5 +24,7 @@
   <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ $.Site.Title }}">
   {{- end }}
 
+  {{/* syntax.css first so main.css can override Chroma's own background */}}
+  <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
 </head>
