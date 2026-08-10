@@ -1,0 +1,7 @@
+<footer class="site-footer">
+  <p>
+    {{ with .Site.Params.author }}{{ . }}{{ end }}
+    {{- with .Site.Params.linkedin }} · <a href="{{ . }}" rel="me">LinkedIn</a>{{ end }}
+    {{- with .Site.Home.OutputFormats.Get "rss" }} · <a href="{{ .Permalink }}">RSS</a>{{ end }}
+  </p>
+</footer>

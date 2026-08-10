@@ -1,0 +1,9 @@
+{{ with .Paginator }}
+  {{ if gt .TotalPages 1 }}
+    <nav class="pagination">
+      {{ with .Prev }}<a href="{{ .URL }}">← Newer</a>{{ else }}<span>← Newer</span>{{ end }}
+      <span class="pagination-position">{{ .PageNumber }} of {{ .TotalPages }}</span>
+      {{ with .Next }}<a href="{{ .URL }}">Older →</a>{{ else }}<span>Older →</span>{{ end }}
+    </nav>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,10 @@
+<p class="post-meta">
+  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+  {{- with .Params.tags }}
+    <span class="tags">
+      {{- range . }}
+        <a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>
+      {{- end }}
+    </span>
+  {{- end }}
+</p>

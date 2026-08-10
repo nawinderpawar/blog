@@ -1,0 +1,30 @@
+baseURL = 'https://pawar.me/'
+locale = 'en-US'
+title = 'Power to you'
+
+# Dated, compact post URLs: /2026/08/some-post/
+[permalinks]
+  posts = '/:year/:month/:slug/'
+
+[params]
+  author = 'Nawinder Pawar'
+  description = 'Some thoughts on software and scalability.'
+  linkedin = 'https://www.linkedin.com/in/nawinderpawar/'
+  email = 'nawinder@pawar.me'
+
+[pagination]
+  pagerSize = 10
+
+[markup.goldmark.renderer]
+  # Allow raw HTML in Markdown posts.
+  unsafe = true
+
+[markup.highlight]
+  noClasses = false
+  style = 'algol_nu'
+
+[taxonomies]
+  tag = 'tags'
+
+[services.rss]
+  limit = 20

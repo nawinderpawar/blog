@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <h2 class="post-title">{{ .Title }}</h2>
+  {{ with .Content }}<div class="post-body">{{ . }}</div>{{ end }}
+
+  <ul class="archive-list">
+    {{ range .Pages.ByDate.Reverse }}
+      <li>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </li>
+    {{ else }}
+      <li class="empty">Nothing here yet.</li>
+    {{ end }}
+  </ul>
+{{ end }}

@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <h2 class="post-title">{{ .Title }}</h2>
+  {{ with .Content }}<div class="post-body">{{ . }}</div>{{ end }}
+
+  <ul class="term-list">
+    {{ range .Pages.ByTitle }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="term-count">{{ len .Pages }}</span></li>
+    {{ else }}
+      <li class="empty">No tags yet.</li>
+    {{ end }}
+  </ul>
+{{ end }}
