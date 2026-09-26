@@ -9,6 +9,7 @@
   <meta name="description" content="{{ $desc | plainify | replaceRE `\s+` " " | truncate 160 }}">
   {{- with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
   <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
 
   <meta property="og:site_name" content="{{ .Site.Title }}">
   <meta property="og:title" content="{{ cond .IsHome .Site.Title .Title }}">
