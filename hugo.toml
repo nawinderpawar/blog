@@ -1,6 +1,6 @@
 baseURL = 'https://pawar.me/'
 locale = 'en-US'
-title = 'Power to you'
+title = 'Nawinder Pawar'
 
 # Dated, compact post URLs: /2026/08/some-post/
 [permalinks]
