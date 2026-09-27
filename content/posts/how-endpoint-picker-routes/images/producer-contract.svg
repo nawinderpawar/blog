@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 424" width="900" height="424" role="img" aria-labelledby="t1 d1">
+  <title id="t1">The producer/scorer contract across one request</title>
+  <desc id="d1">Before scheduling, the producer reads the index and attaches match info to every candidate endpoint. The scorer divides those two numbers. After scheduling, the producer writes the chosen endpoint's blocks back into the index, which is what the next request reads.</desc>
+  <defs>
+    <marker id="aC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5fc9d9"/></marker>
+    <marker id="aP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c48ec4"/></marker>
+    <marker id="aD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7a7096"/></marker>
+    <style>
+      .bx   { fill:#241f33; stroke:#3f3659; stroke-width:1.5; }
+      .ttl  { font:600 14.5px ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif; fill:#ece9f4; }
+      .sub  { font:12px ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif; fill:#a79ec0; }
+      .mono { font:11.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#a79ec0; }
+      .cy   { font:11.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#5fc9d9; }
+      .pu   { font:11.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#c48ec4; }
+      .dm   { font:11px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#7a7096; }
+      .eyeb { font:600 10.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#7a7096; letter-spacing:1.4px; }
+      .lc   { stroke:#5fc9d9; stroke-width:2; fill:none; }
+      .lp   { stroke:#c48ec4; stroke-width:2; fill:none; }
+      .ld   { stroke:#7a7096; stroke-width:1.5; fill:none; stroke-dasharray:5 4; }
+    </style>
+  </defs>
+  <rect width="900" height="424" fill="#120f1a"/>
+  <text x="28" y="36" class="eyeb">ONE REQUEST, THREE MOMENTS</text>
+
+  <rect x="28" y="56" width="262" height="184" rx="9" class="bx" stroke="#8d5f8d"/>
+  <text x="46" y="80" class="eyeb" fill="#c48ec4">① BEFORE · DataProducer</text>
+  <text x="46" y="104" class="ttl">the producer reads</text>
+  <text x="46" y="128" class="sub">hashes the prompt into blocks</text>
+  <text x="46" y="147" class="sub">looks up which pod holds them</text>
+  <text x="46" y="166" class="sub">in index</text>
+  <text x="46" y="185" class="sub">attaches match info to</text>
+  <text x="46" y="204" class="sub">every candidate endpoint</text>
+  <text x="46" y="228" class="pu">matchBlocks · totalBlocks</text>
+
+  <rect x="319" y="56" width="262" height="184" rx="9" class="bx" stroke="#4d9aa6"/>
+  <text x="337" y="80" class="eyeb" fill="#5fc9d9">② SCHEDULING · scorer</text>
+  <text x="337" y="104" class="ttl">prefix-cache-scorer</text>
+  <text x="337" y="136" class="cy" font-size="11">Divides matchBlocks / totalBlocks</text>
+  <text x="337" y="156" class="sub">for each endpoint</text>
+
+  <rect x="610" y="56" width="262" height="184" rx="9" class="bx" stroke="#8d5f8d"/>
+  <text x="628" y="80" class="eyeb" fill="#c48ec4">③ AFTER · PreRequest</text>
+  <text x="628" y="104" class="ttl">the producer writes</text>
+  <text x="628" y="128" class="sub">records the endpoint that</text>
+  <text x="628" y="147" class="sub">was chosen, against every</text>
+  <text x="628" y="166" class="sub">block of this prompt</text>
+  <text x="628" y="196" class="dm">asynchronous — off the</text>
+  <text x="628" y="211" class="dm">request path</text>
+
+  <path d="M290 148 L311 148" class="lc" marker-end="url(#aC)"/>
+  <path d="M581 148 L602 148" class="lc" marker-end="url(#aC)"/>
+
+  <rect x="319" y="318" width="262" height="86" rx="9" fill="#302543" stroke="#c48ec4" stroke-width="2"/>
+  <text x="337" y="342" class="eyeb" fill="#c48ec4">THE INDEX</text>
+  <text x="337" y="366" class="ttl" fill="#f0e6f0">outlives the request</text>
+  <text x="337" y="389" class="pu">block hash → which pods held it</text>
+
+  <path d="M319 361 L174 361 L174 248" class="lc" marker-end="url(#aC)"/>
+  <text x="182" y="308" class="cy">read</text>
+
+  <path d="M741 248 L741 361 L589 361" class="lp" marker-end="url(#aP)"/>
+  <text x="640" y="288" class="pu">write</text>
+  <text x="640" y="304" class="dm">only the chosen</text>
+  <text x="640" y="319" class="dm">endpoint</text>
+
+</svg>

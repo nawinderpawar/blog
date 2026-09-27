@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 548" width="900" height="548" role="img" aria-labelledby="t3 d3">
+  <title id="t3">The matching walk and the two numbers it produces</title>
+  <desc id="d3">Each block hash of the prompt is looked up in the index in order. The walk stops at the first block no pod holds; later blocks are never read. Each pod is tallied for the blocks it appeared in, giving a per-pod matchBlocks against a shared totalBlocks.</desc>
+  <defs>
+    <marker id="aC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5fc9d9"/></marker>
+    <marker id="aP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c48ec4"/></marker>
+    <marker id="aD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7a7096"/></marker>
+    <marker id="aR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#e07a82"/></marker>
+    <style>
+      .bx   { fill:#241f33; stroke:#3f3659; stroke-width:1.5; }
+      .ttl  { font:600 14.5px ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif; fill:#ece9f4; }
+      .sub  { font:12px ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif; fill:#a79ec0; }
+      .mono { font:11.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#a79ec0; }
+      .cy   { font:11.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#5fc9d9; }
+      .pu   { font:11.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#c48ec4; }
+      .rd   { font:11.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#e07a82; }
+      .dm   { font:11px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#7a7096; }
+      .eyeb { font:600 10.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#7a7096; letter-spacing:1.4px; }
+      .lc   { stroke:#5fc9d9; stroke-width:2; fill:none; }
+      .lp   { stroke:#c48ec4; stroke-width:2; fill:none; }
+      .ld   { stroke:#7a7096; stroke-width:1.5; fill:none; stroke-dasharray:5 4; }
+      .num  { fill:#120f1a; stroke-width:1.5; }
+      .numt { font:600 11px ui-sans-serif,-apple-system,Arial,sans-serif; fill:#ece9f4; text-anchor:middle; }
+    </style>
+  </defs>
+  <rect width="900" height="548" fill="#120f1a"/>
+
+  <text x="28" y="34" class="eyeb">THE WALK — FORWARD FROM BLOCK 0, STOPPING AT THE FIRST GAP</text>
+  <text x="28" y="62" class="dm">this request</text>
+  <text x="250" y="62" class="dm">hashToPods — which pods were last sent a prompt containing this block</text>
+  <text x="700" y="62" class="dm">running tally</text>
+
+  <rect x="28" y="74" width="120" height="40" rx="5" class="bx" stroke="#4d9aa6"/>
+  <text x="88" y="99" class="cy" text-anchor="middle">h₀</text>
+  <path d="M148 94 L242 94" class="lc" marker-end="url(#aC)"/>
+  <rect x="250" y="74" width="400" height="40" rx="5" class="bx" stroke="#4d9aa6"/>
+  <text x="268" y="99" class="cy">{ A , B }</text>
+  <text x="700" y="99" class="mono">A:1  B:1</text>
+
+  <rect x="28" y="126" width="120" height="40" rx="5" class="bx" stroke="#4d9aa6"/>
+  <text x="88" y="151" class="cy" text-anchor="middle">h₁</text>
+  <path d="M148 146 L242 146" class="lc" marker-end="url(#aC)"/>
+  <rect x="250" y="126" width="400" height="40" rx="5" class="bx" stroke="#4d9aa6"/>
+  <text x="268" y="151" class="cy">{ A , B }</text>
+  <text x="700" y="151" class="mono">A:2  B:2</text>
+
+  <rect x="28" y="178" width="120" height="40" rx="5" class="bx" stroke="#4d9aa6"/>
+  <text x="88" y="203" class="cy" text-anchor="middle">h₂</text>
+  <path d="M148 198 L242 198" class="lc" marker-end="url(#aC)"/>
+  <rect x="250" y="178" width="400" height="40" rx="5" class="bx" stroke="#4d9aa6"/>
+  <text x="268" y="203" class="cy">{ B }</text>
+  <text x="700" y="203" class="mono">A:2  B:3</text>
+
+  <rect x="28" y="230" width="120" height="40" rx="5" class="bx" stroke="#e07a82"/>
+  <text x="88" y="255" class="rd" text-anchor="middle">h₃</text>
+  <path d="M148 250 L242 250" class="lc" stroke="#e07a82" marker-end="url(#aR)"/>
+  <rect x="250" y="230" width="400" height="40" rx="5" fill="#2e1a20" stroke="#e07a82" stroke-width="1.5"/>
+  <text x="268" y="255" class="rd">∅   no pod at all → break</text>
+  <text x="700" y="255" class="mono">unchanged</text>
+
+  <rect x="28" y="282" width="120" height="40" rx="5" class="bx" stroke-dasharray="4 3" opacity="0.55"/>
+  <text x="88" y="307" class="dm" text-anchor="middle">h₄</text>
+  <rect x="250" y="282" width="400" height="40" rx="5" class="bx" stroke-dasharray="4 3" opacity="0.55"/>
+  <text x="268" y="307" class="dm">never looked up</text>
+  <text x="700" y="307" class="dm">—</text>
+
+  <text x="28" y="360" class="eyeb">WHAT EACH CANDIDATE IS HANDED</text>
+  <text x="28" y="384" class="dm">totalBlocks is the whole prompt — 5 blocks, the partial tail included — and is the same for every candidate.</text>
+
+  <rect x="28" y="400" width="200" height="86" rx="8" fill="#302543" stroke="#c48ec4" stroke-width="2"/>
+  <text x="46" y="424" class="ttl" fill="#f0e6f0">pod B</text>
+  <text x="46" y="446" class="pu">matchBlocks 3 / 5</text>
+  <text x="46" y="468" class="pu">score 0.60</text>
+
+  <rect x="244" y="400" width="200" height="86" rx="8" class="bx"/>
+  <text x="262" y="424" class="ttl">pod A</text>
+  <text x="262" y="446" class="mono">matchBlocks 2 / 5</text>
+  <text x="262" y="468" class="mono">score 0.40</text>
+
+  <rect x="460" y="400" width="200" height="86" rx="8" class="bx"/>
+  <text x="478" y="424" class="ttl">pods C, D</text>
+  <text x="478" y="446" class="mono">matchBlocks 0 / 5</text>
+  <text x="478" y="468" class="mono">score 0.00</text>
+
+  <rect x="676" y="400" width="196" height="86" rx="8" class="bx" stroke="#8d5f8d"/>
+  <text x="694" y="424" class="eyeb" fill="#c48ec4">AFTER THE PICK</text>
+  <text x="694" y="446" class="sub">h₀…h₄ are written</text>
+  <text x="694" y="464" class="sub">for the winner only</text>
+  <text x="694" y="481" class="dm">all 5, not just 3</text>
+
+  <path d="M228 443 L238 443" class="lp"/>
+  <text x="28" y="524" class="dm">B wins on prefix, so the next request sharing this prompt finds all five of its blocks under B — including the two that just missed.</text>
+</svg>

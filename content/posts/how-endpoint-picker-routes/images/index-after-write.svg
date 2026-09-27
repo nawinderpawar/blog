@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 452" width="900" height="452" role="img" aria-labelledby="t4 d4">
+  <title id="t4">The index after the request was routed to B</title>
+  <desc id="d4">Every block of the prompt is now recorded against B, including the two the walk never matched. A is untouched. The next request with the same prompt matches all five blocks on B.</desc>
+  <defs>
+    <marker id="aP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c48ec4"/></marker>
+    <style>
+      .bx   { fill:#241f33; stroke:#3f3659; stroke-width:1.5; }
+      .ttl  { font:600 14.5px ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif; fill:#ece9f4; }
+      .mono { font:11.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#a79ec0; }
+      .pu   { font:11.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#c48ec4; }
+      .dm   { font:11px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#7a7096; }
+      .eyeb { font:600 10.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace; fill:#7a7096; letter-spacing:1.4px; }
+      .lp   { stroke:#c48ec4; stroke-width:2; fill:none; }
+    </style>
+  </defs>
+  <rect width="900" height="452" fill="#120f1a"/>
+
+  <text x="28" y="34" class="eyeb">THE INDEX AFTER THE PICK — B WON, SO B IS RECORDED AGAINST EVERY BLOCK</text>
+
+  <text x="28" y="62" class="dm">this prompt</text>
+  <text x="188" y="62" class="dm">hashToPods before</text>
+  <text x="430" y="62" class="dm">hashToPods after</text>
+  <text x="664" y="62" class="dm">what changed</text>
+
+  <rect x="28" y="76" width="118" height="40" rx="5" class="bx"/>
+  <text x="87" y="101" class="mono" text-anchor="middle">h₀</text>
+  <rect x="188" y="76" width="176" height="40" rx="5" class="bx"/>
+  <text x="206" y="101" class="mono">{ A , B }</text>
+  <path d="M374 96 L420 96" class="lp" marker-end="url(#aP)"/>
+  <rect x="430" y="76" width="176" height="40" rx="5" class="bx"/>
+  <text x="448" y="101" class="mono">{ A , B }</text>
+  <text x="664" y="101" class="dm">already there</text>
+
+  <rect x="28" y="124" width="118" height="40" rx="5" class="bx"/>
+  <text x="87" y="149" class="mono" text-anchor="middle">h₁</text>
+  <rect x="188" y="124" width="176" height="40" rx="5" class="bx"/>
+  <text x="206" y="149" class="mono">{ A , B }</text>
+  <path d="M374 144 L420 144" class="lp" marker-end="url(#aP)"/>
+  <rect x="430" y="124" width="176" height="40" rx="5" class="bx"/>
+  <text x="448" y="149" class="mono">{ A , B }</text>
+  <text x="664" y="149" class="dm">already there</text>
+
+  <rect x="28" y="172" width="118" height="40" rx="5" class="bx"/>
+  <text x="87" y="197" class="mono" text-anchor="middle">h₂</text>
+  <rect x="188" y="172" width="176" height="40" rx="5" class="bx"/>
+  <text x="206" y="197" class="mono">{ B }</text>
+  <path d="M374 192 L420 192" class="lp" marker-end="url(#aP)"/>
+  <rect x="430" y="172" width="176" height="40" rx="5" class="bx"/>
+  <text x="448" y="197" class="mono">{ B }</text>
+  <text x="664" y="197" class="dm">already there</text>
+
+  <rect x="28" y="220" width="118" height="40" rx="5" class="bx" stroke="#c48ec4"/>
+  <text x="87" y="245" class="pu" text-anchor="middle">h₃</text>
+  <rect x="188" y="220" width="176" height="40" rx="5" class="bx"/>
+  <text x="206" y="245" class="dm">∅   empty</text>
+  <path d="M374 240 L420 240" class="lp" marker-end="url(#aP)"/>
+  <rect x="430" y="220" width="176" height="40" rx="5" fill="#302543" stroke="#c48ec4" stroke-width="2"/>
+  <text x="448" y="245" class="pu">{ B }</text>
+  <text x="664" y="245" class="pu">NEW — B learned it</text>
+
+  <rect x="28" y="268" width="118" height="40" rx="5" class="bx" stroke="#c48ec4"/>
+  <text x="87" y="293" class="pu" text-anchor="middle">h₄</text>
+  <rect x="188" y="268" width="176" height="40" rx="5" class="bx"/>
+  <text x="206" y="293" class="dm">never looked up</text>
+  <path d="M374 288 L420 288" class="lp" marker-end="url(#aP)"/>
+  <rect x="430" y="268" width="176" height="40" rx="5" fill="#302543" stroke="#c48ec4" stroke-width="2"/>
+  <text x="448" y="293" class="pu">{ B }</text>
+  <text x="664" y="293" class="pu">NEW — B learned it</text>
+
+  <text x="28" y="350" class="eyeb">WHAT THE NEXT REQUEST SEES</text>
+
+  <rect x="28" y="362" width="400" height="66" rx="8" fill="#302543" stroke="#c48ec4" stroke-width="2"/>
+  <text x="48" y="386" class="ttl" fill="#f0e6f0">same prompt again → B matches 5 of 5</text>
+  <text x="48" y="410" class="pu">score 1.00, up from 0.60</text>
+
+  <rect x="452" y="362" width="420" height="66" rx="8" class="bx"/>
+  <text x="472" y="386" class="ttl">A is untouched</text>
+  <text x="472" y="410" class="dm">only the chosen endpoint is ever recorded</text>
+</svg>
