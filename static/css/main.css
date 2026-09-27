@@ -11,7 +11,7 @@
   --link: #8fb8f0;
   --link-hover: #f2a6a6;
   --code-bg: #1e2127;
-  --measure: 36rem;
+  --measure: 46rem;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -24,7 +24,7 @@ body {
   max-width: var(--measure);
   background: var(--bg);
   color: var(--fg);
-  font: 1.0625rem/1.65 "Charter", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  font: 0.9375rem/1.8 Verdana, system-ui, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
 }
 
