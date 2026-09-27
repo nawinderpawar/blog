@@ -2,8 +2,8 @@
 title: "How llm-d's Endpoint Picker knows which replica holds your prefix"
 slug: "how-endpoint-picker-routes"
 date: 2026-09-26
-draft: true
-tags: ["llm-inference", "kubernetes"]
+draft: false
+tags: ["llm-inference", "kubernetes", "llm-d-router"]
 description: "How the Gateway API Inference Extension's Endpoint Picker uses an approximate prefix-cache producer to route each request to the replica most likely to already hold its KV cache."
 ---
 
@@ -57,8 +57,10 @@ schedulingProfiles:
 Each scorer returns one value per endpoint in [0,1], higher being better. The
 profile combines them with a plain weighted sum:
 
+```
 for each scorer:
     total[endpoint] += clamp(score, 0, 1) × scorer.weight
+```
 
 A picker then reduces the scored set to an answer; the default max-score-picker takes the highest. 
 
