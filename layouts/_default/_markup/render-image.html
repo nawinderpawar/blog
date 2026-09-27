@@ -1,0 +1,11 @@
+{{- $u := urls.Parse .Destination -}}
+{{- if $u.IsAbs -}}
+<img src="{{ .Destination }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}>
+{{- else -}}
+  {{- $resource := .Page.Resources.Get .Destination -}}
+  {{- if $resource -}}
+<img src="{{ $resource.RelPermalink }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}>
+  {{- else -}}
+<img src="{{ .Destination | relURL }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}>
+  {{- end -}}
+{{- end -}}
