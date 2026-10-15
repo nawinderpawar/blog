@@ -28,4 +28,12 @@
   {{/* syntax.css first so main.css can override Chroma's own background */}}
   <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+
+  {{- /* Per-post stylesheets from the page bundle, listed in front matter as css: ["x.css"]. */}}
+  {{- range .Params.css }}
+    {{- with $.Resources.Get . }}
+      {{- $css := . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+    {{- end }}
+  {{- end }}
 </head>

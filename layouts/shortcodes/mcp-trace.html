@@ -1,0 +1,30 @@
+{{- /* Interactive MCP authorization trace. Reads trace.json and trace.js from the
+       calling post's bundle; the post loads trace.css through its `css` front matter. */ -}}
+{{- $raw := (.Page.Resources.Get "trace.json").Content -}}
+{{- $data := $raw | transform.Unmarshal -}}
+{{- $js := .Page.Resources.Get "trace.js" | minify | fingerprint -}}
+<div class="mcp-trace">
+  <div class="workspace">
+    <aside class="sidebar">
+      <div class="sidebar-label">Exchanges</div>
+      <nav id="step-nav" aria-label="Message navigation"></nav>
+      <a class="nav-link" href="#refresh" title="Renewing access later"><span class="nav-number">↳</span>Refresh later</a>
+      <a class="nav-link" href="#pkce" title="How PKCE works"><span class="nav-number">↳</span>PKCE</a>
+    </aside>
+    <div class="trace-main">
+      <div class="trace-toolbar"><button class="btn" id="expand-all" type="button" hidden>Open all exchanges</button></div>
+      <div id="exchanges"></div>
+      <noscript>
+        <p class="trace-fallback-note">The interactive view needs JavaScript. These are the exchanges it walks through:</p>
+        <ol class="trace-fallback">
+          {{- range $data.exchanges }}
+          <li><strong>{{ .title }}</strong> <span class="route">{{ .sender }} → {{ .receiver }} · HTTP {{ .response.status }}</span><br>{{ .summary }}</li>
+          {{- end }}
+        </ol>
+      </noscript>
+    </div>
+  </div>
+</div>
+{{- /* Inline the file as-is: jsonify would re-sort object keys and reorder the displayed fields. */}}
+<script type="application/json" id="trace-data">{{ replace $raw "</" "<\\/" | safeJS }}</script>
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>

@@ -7,7 +7,13 @@
       <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
       {{ partial "post-meta.html" . }}
       <div class="post-body">
-        {{ .Content }}
+        {{- if .Params.interactive }}
+          {{- /* Its scripts and styles load only on the post's own page. */}}
+          {{ .Summary }}
+          <p class="read-more"><a href="{{ .RelPermalink }}">Open the interactive walkthrough →</a></p>
+        {{- else }}
+          {{ .Content }}
+        {{- end }}
       </div>
     </article>
   {{ else }}

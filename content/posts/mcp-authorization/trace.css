@@ -1,0 +1,243 @@
+/* Interactive MCP trace. Everything is scoped to .mcp-trace and built on the
+   blog palette in main.css. Contrast of every text pair is at least 6:1. */
+
+.mcp-trace {
+  --t-surface: #1a1c21;
+  --t-elevated: var(--code-bg);
+  --t-border: var(--rule);
+  --t-border-strong: #4a4f57;
+  --t-accent: var(--link-hover);
+  --t-accent-soft: rgba(242, 166, 166, 0.12);
+  --t-success: #86d49a;
+  --t-ui: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --t-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Layout below responds to the width this block actually gets, not the viewport. */
+  container: trace / inline-size;
+  margin: 1.5rem 0 2.5rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.mcp-trace [hidden] { display: none !important; }
+.mcp-trace .mono { font-family: var(--t-mono); }
+.mcp-trace code { overflow-wrap: anywhere; }
+.mcp-trace button { font: inherit; cursor: pointer; color: var(--fg); }
+.mcp-trace button:focus-visible,
+.mcp-trace a:focus-visible,
+.mcp-trace summary:focus-visible { outline: 2px solid var(--t-accent); outline-offset: 3px; }
+
+.mcp-trace .btn {
+  border: 1px solid var(--t-border);
+  background: var(--t-surface);
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  font-family: var(--t-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.mcp-trace .btn:hover { border-color: var(--t-border-strong); }
+.mcp-trace .btn[aria-expanded="true"] { color: var(--t-accent); border-color: var(--t-accent); background: var(--t-accent-soft); }
+
+/* Sidebar + exchanges */
+.mcp-trace .workspace { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 1rem; align-items: start; }
+.mcp-trace .trace-main { min-width: 0; container: trace-main / inline-size; }
+
+.mcp-trace .sidebar { position: sticky; top: 1.5rem; font-family: var(--t-ui); }
+.mcp-trace .sidebar-label {
+  margin: 0 0 0.6rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.mcp-trace .nav-link {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 0.1rem;
+  padding: 0.3rem 0.35rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.mcp-trace .nav-link:hover { background: var(--t-accent-soft); color: var(--t-accent); text-decoration: none; }
+.mcp-trace .nav-number { flex: none; width: 1.1rem; font-size: 0.6875rem; }
+
+.mcp-trace .trace-toolbar { display: flex; justify-content: flex-end; margin-bottom: 0.75rem; }
+
+/* Exchange cards */
+.mcp-trace .exchange {
+  margin-bottom: 0.9rem;
+  border: 1px solid var(--t-border);
+  border-radius: 8px;
+  background: var(--t-surface);
+  overflow: hidden;
+}
+.mcp-trace .exchange > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  list-style: none;
+  cursor: pointer;
+}
+.mcp-trace .exchange > summary::-webkit-details-marker { display: none; }
+.mcp-trace .step-number { flex: none; width: 1.5rem; font-size: 0.75rem; color: var(--t-accent); }
+.mcp-trace .summary-main { flex: 1; min-width: 0; }
+.mcp-trace .summary-main h3 { margin: 0; font-size: 0.9375rem; line-height: 1.4; letter-spacing: 0; }
+.mcp-trace .route { margin-top: 0.15rem; font-family: var(--t-ui); font-size: 0.75rem; color: var(--muted); overflow-wrap: anywhere; }
+.mcp-trace .status {
+  flex: none;
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--t-border);
+  border-radius: 4px;
+  background: var(--t-elevated);
+  font: 0.75rem/1.6 var(--t-mono);
+  color: var(--muted);
+}
+.mcp-trace .status.success { color: var(--t-success); }
+.mcp-trace .status.challenge { color: var(--t-accent); }
+.mcp-trace .chevron { color: var(--muted); transition: transform 0.15s; }
+.mcp-trace .exchange[open] .chevron { transform: rotate(90deg); }
+.mcp-trace .exchange-intro { margin: 0; padding: 0 1rem 0.9rem 3.25rem; font-size: 0.8125rem; color: var(--muted); }
+
+.mcp-trace .tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0 0.75rem;
+  border-top: 1px solid var(--t-border);
+  border-bottom: 1px solid var(--t-border);
+  background: var(--t-elevated);
+}
+.mcp-trace .tab {
+  padding: 0.6rem 0.75rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  font-family: var(--t-ui);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.mcp-trace .tab[aria-selected="true"] { color: var(--t-accent); border-bottom-color: var(--t-accent); }
+
+/* Message panes */
+.mcp-trace .pane { padding: 1rem; }
+.mcp-trace .message-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.9rem; }
+.mcp-trace .message-direction { font-family: var(--t-ui); font-size: 0.8125rem; font-weight: 600; color: var(--muted); }
+.mcp-trace .start-line {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--t-border);
+  border-radius: 6px;
+  background: var(--t-elevated);
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+.mcp-trace .section-label {
+  margin: 1.1rem 0 0.4rem;
+  font-family: var(--t-ui);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.mcp-trace .field-row { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; border-top: 1px solid var(--t-border); }
+.mcp-trace .field-row:last-child { border-bottom: 1px solid var(--t-border); }
+.mcp-trace .field-row.object > .wire-field { background: var(--t-elevated); }
+.mcp-trace .wire-field {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.55fr) minmax(0, 1fr);
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0.6rem 0.5rem;
+  align-content: start;
+  font: 0.75rem/1.7 var(--t-mono);
+}
+.mcp-trace .field-key { padding-left: var(--indent); color: var(--muted); overflow-wrap: anywhere; }
+.mcp-trace .field-value { min-width: 0; color: var(--fg); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+.mcp-trace .annotation {
+  display: none;
+  min-width: 0;
+  padding: 0.6rem 0.9rem;
+  border-left: 1px solid var(--t-border);
+  background: var(--t-elevated);
+  font-size: 0.8125rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.mcp-trace .annotation p { margin: 0 0 0.5rem; }
+.mcp-trace .annotation p:last-child { margin-bottom: 0; }
+.mcp-trace .annotation .values { font-size: 0.75rem; }
+.mcp-trace .annotation .values strong { color: var(--fg); }
+.mcp-trace .pane.explaining .field-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.mcp-trace .pane.explaining .annotation { display: block; }
+.mcp-trace .pane.explaining .wire-field { grid-template-columns: minmax(6rem, 0.65fr) minmax(0, 1fr); }
+
+.mcp-trace .references { display: grid; gap: 0.3rem; margin-top: 0.5rem; font-family: var(--t-ui); font-size: 0.75rem; }
+.mcp-trace .reference { line-height: 1.5; }
+.mcp-trace .reference a { margin-right: 0.4rem; font-weight: 600; }
+
+.mcp-trace .protocol-note {
+  display: none;
+  margin-top: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-left: 2px solid var(--t-accent);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.mcp-trace .protocol-note p { margin: 0 0 0.4rem; }
+.mcp-trace .pane.explaining .protocol-note { display: block; }
+
+.mcp-trace .discovery-order { width: 100%; margin: 0.75rem 0; border-collapse: collapse; font-size: 0.75rem; }
+.mcp-trace .discovery-order th,
+.mcp-trace .discovery-order td { padding: 0.45rem; border-bottom: 1px solid var(--t-border); text-align: left; vertical-align: top; }
+.mcp-trace .discovery-order td:nth-child(2) { overflow-wrap: anywhere; }
+
+.mcp-trace .script-example {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0;
+  background: none;
+  font-size: 0.75rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* No-JavaScript fallback */
+.mcp-trace .trace-fallback-note { color: var(--muted); }
+.mcp-trace .trace-fallback li { margin-bottom: 0.75rem; }
+
+/* Phone widths: drop the side rail. */
+@container trace (max-width: 34rem) {
+  .mcp-trace .workspace { display: block; }
+  .mcp-trace .sidebar { display: none; }
+}
+/* Within the text column the exchanges get ~36rem: stack annotations under their field. */
+@container trace-main (max-width: 42rem) {
+  .mcp-trace .pane.explaining .field-row { grid-template-columns: minmax(0, 1fr); }
+  .mcp-trace .annotation { border-left: 0; border-top: 1px dashed var(--t-border); }
+  .mcp-trace .pane.explaining .wire-field { grid-template-columns: minmax(8rem, 0.55fr) minmax(0, 1fr); }
+}
+@container trace-main (max-width: 30rem) {
+  .mcp-trace .pane { padding: 0.75rem; }
+  .mcp-trace .exchange-intro { padding-left: 1rem; }
+  .mcp-trace .wire-field,
+  .mcp-trace .pane.explaining .wire-field { grid-template-columns: minmax(6rem, 0.65fr) minmax(0, 1fr); }
+  .mcp-trace .message-toolbar { align-items: flex-start; }
+  .mcp-trace .summary-main h3 { font-size: 0.875rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mcp-trace .chevron { transition: none; }
+}
+
+@media print {
+  .mcp-trace .sidebar, .mcp-trace .tabs, .mcp-trace .message-toolbar button, .mcp-trace #expand-all { display: none; }
+  .mcp-trace .workspace { display: block; }
+  .mcp-trace .pane[hidden] { display: block !important; }
+}
